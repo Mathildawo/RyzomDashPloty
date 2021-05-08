@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RyzomDashPloty", "RyzomDashPloty.pyproj", "{32745BB2-93C0-4778-9929-F17C2CC82811}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32745BB2-93C0-4778-9929-F17C2CC82811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32745BB2-93C0-4778-9929-F17C2CC82811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0421BA63-C2B0-401C-B4D0-2F64E9DE53C4}
+	EndGlobalSection
+EndGlobal
