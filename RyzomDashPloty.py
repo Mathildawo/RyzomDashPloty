@@ -12,6 +12,21 @@ from datetime import timedelta
 from datetime import time
 from datetime import datetime
 
+import xml.etree.ElementTree as ET
+
+class season():
+    _seasons = ['Printemps','Eté','Automne','Hiver']
+    _rank = 0
+
+    def __init__(self, refresh):
+        if refresh == True:
+            data = requests.get('https://api.ryzom.com/time.php?format=xml')
+            root = ET.fromstring(data.text)
+            season._rank = int(root.find('season').text)
+
+    def getSeason(self):
+        return season._seasons[season._rank]        
+
 class tickConversion():
     _datacycle = list()
     _iNext = 0
@@ -110,10 +125,12 @@ app.layout = html.Div(children=[
 def update_graph_live(n):
     if (n % 15 == 0):
         ryzom = weather(True)
+        saison = season(True)
     else:
+        saison = season(False)
         ryzom = weather(False)
     df = pd.DataFrame(ryzom.getData())
-    fig = px.line (df,x = "dates", y = "cc" ,color = "continents")
+    fig = px.line (df,x = "dates", y = "cc" ,color = "continents",  title= "Saison : " + saison.getSeason())
     fig.update_yaxes(tickmode = "array",tickvals = [0,16,33,50,66,82,100],ticktext = ["Best", "Good 16%","Good 33%","Bad 50%","Bad 66%","Worst 82%","Worst"],showgrid = True)
     fig.update_xaxes(tickmode = "linear",showline = True,showgrid = True, dtick = 3)
     fig.update_layout(legend_uirevision='true')
