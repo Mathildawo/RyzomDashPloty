@@ -1,0 +1,14 @@
+indice;Saison;Continent;pays;cc;TauxMini;TauxMaxi;MP;Excel;Supreme
+0;Ete;Primes;Source;Best;0;15;Ecorce;Becker;
+1;Ete;Primes;Source;Bad;50;82;Ecorce;;Becker
+2;Ete;Primes;Source;Best;0;49;Fibre;Dzao;
+3;Ete;Primes;Source;Worst;83;100;Fibre; ;Dzao
+4;Ete;Primes;Cite engloutie;Good;16;49;Huile;Irin;
+5;Automne;Primes;Profondeurs Interdites;Good;16;49;Carapace;Grosse;
+6;Hiver;Primes;Profondeurs Interdites;Good;16;49;Ambre;Zun;
+7;Printemps;Primes;Profondeurs Interdites;Bad;50;82;Bois;Tama;
+8;Hiver;Primes;Source;Best;0;49;Fibre;Dzao;
+9;Hiver;Primes;Source;Worst;83;100;Fibre; ;Dzao
+10;Hiver;Primes;Cite engloutie;Bad;16;49;Huile;Irin;
+11;Hiver;Primes;Profondeurs Interdites;Good;16;49;Carapace;Grosse;
+12;Hiver;Primes;Profondeurs Interdites;Good;16;49;Ambre;Zun;
