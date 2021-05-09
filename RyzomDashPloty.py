@@ -40,7 +40,9 @@ class tickConversion():
 
 class weather():
     _data = dict()
-    def __init__(self):
+    def __init__(self, refresh):
+        if refresh == False:
+            return
         response = requests.get('https://api.bmsite.net/atys/weather?cycles=19&offset=0')
         manipstr = response.text
         manipstr = manipstr.replace("cycle", "start",1)
@@ -95,7 +97,7 @@ app.layout = html.Div(children=[
         dcc.Graph(id='live-update-graph', figure={}),
         dcc.Interval(
             id='graph-update',
-            interval= 45 * 1000,  # in milliseconds
+            interval= 60 * 1000,  # in milliseconds
             n_intervals=0,
         )
     ])
@@ -105,14 +107,20 @@ app.layout = html.Div(children=[
 
 @app.callback(Output('live-update-graph', 'figure'),[Input('graph-update', 'n_intervals')])
 
-def update_graph_live(input_data):
-    ryzom = weather()
+def update_graph_live(n):
+    if (n % 15 == 0):
+        ryzom = weather(True)
+    else:
+        ryzom = weather(False)
     df = pd.DataFrame(ryzom.getData())
     fig = px.line (df,x = "dates", y = "cc" ,color = "continents")
-    fig.update_yaxes(tickmode = "array",tickvals = [0,16,33,50,66,82,100],ticktext = ["Best", "Good 16%","Good 33%","Bad 50%","Bad 66%","Worst 82%","Worst 100%"],showgrid = True)
+    fig.update_yaxes(tickmode = "array",tickvals = [0,16,33,50,66,82,100],ticktext = ["Best", "Good 16%","Good 33%","Bad 50%","Bad 66%","Worst 82%","Worst"],showgrid = True)
     fig.update_xaxes(tickmode = "linear",showline = True,showgrid = True, dtick = 3)
     fig.update_layout(legend_uirevision='true')
-    print ('callback : ', input_data)
+    fig.add_vline(x=datetime.now().strftime("%H:%M"), line_width=1, line_dash="dash", line_color="red")
+    fig.update_xaxes(showline=True, linewidth=2, linecolor='black', gridcolor='rgba(211, 211, 211, 0.75)')
+    #fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)','paper_bgcolor': 'rgba(0, 0, 0, 0)'})
+    #fig.update_yaxes(showline=True, linewidth=2, linecolor='black', gridcolor='grey')
     return fig
 
 app.run_server (debug = True)
